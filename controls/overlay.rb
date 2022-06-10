@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-include_controls "redhat-enterprise-linux-7-stig-baseline" do
+include_controls "rhel7-STIG-small-baseline" do
   
 	 control "V-71935" do
 		title "The Red Hat Enterprise Linux operating system must be configured so
