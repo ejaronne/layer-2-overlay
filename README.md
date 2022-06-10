@@ -1,5 +1,5 @@
-# second-layer-example-inspec-overlay-profile-against-1st-layer-example-inspec-overlay-profile
-Second layer Example InSpec profile overlay to use what's in https://github.com/ejaronne/example-inspec-overlay-profile-against-rhel7-stig-baseline-profile, add/overlay as needed, and validate the secure configuration of Red Hat Enterprise Linux 7 against [DISA's](https://iase.disa.mil/stigs/Pages/index.aspx) Red Hat Enterprise Linux 7 STIG Version 2 Release 6.
+# layer-2-overlay
+Second layer Example InSpec profile overlay to use what's in https://github.com/ejaronne/layer-1-overlay, add/overlay as needed, and validate the secure configuration of Red Hat Enterprise Linux 7 against [DISA's](https://iase.disa.mil/stigs/Pages/index.aspx) Red Hat Enterprise Linux 7 STIG Version 2 Release 6.
 
 ## Getting Started  
 It is intended and recommended that InSpec and this profile overlay be run from a __"runner"__ host (such as a DevOps orchestration server, an administrative management system, or a developer's workstation/laptop) against the target remotely over __ssh__.
@@ -127,19 +127,19 @@ The input `disable_slow_controls (bool: false)` can be set to `true` or `false` 
 Against a remote target using ssh with escalated privileges (i.e., InSpec installed on a separate runner host)
 ```bash
 # How to run 
-inspec exec https://github.com/ejaronne/second-layer-example-inspec-overlay-profile-against-1st-layer-example-inspec-overlay-profile/archive/main.tar.gz -t ssh://TARGET_USERNAME:TARGET_PASSWORD@TARGET_IP:TARGET_PORT --sudo --sudo-password=<SUDO_PASSWORD_IF_REQUIRED> --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> 
+inspec exec https://github.com/ejaronne/layer-2-overlay/archive/main.tar.gz -t ssh://TARGET_USERNAME:TARGET_PASSWORD@TARGET_IP:TARGET_PORT --sudo --sudo-password=<SUDO_PASSWORD_IF_REQUIRED> --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> 
 ```
 
 Against a remote target using a pem key with escalated privileges (i.e., InSpec installed on a separate runner host)
 ```bash
 # How to run 
-inspec exec https://github.com/ejaronne/second-layer-example-inspec-overlay-profile-against-1st-layer-example-inspec-overlay-profile/archive/main.tar.gz -t ssh://TARGET_USERNAME@TARGET_IP:TARGET_PORT --sudo -i <your_PEM_KEY> --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>  
+inspec exec https://github.com/ejaronne/layer-2-overlay/archive/main.tar.gz -t ssh://TARGET_USERNAME@TARGET_IP:TARGET_PORT --sudo -i <your_PEM_KEY> --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>  
 ```
 
 Against a local Red Hat host with escalated privileges (i.e., InSpec installed on the target)
 ```bash
 # How to run
-sudo inspec exec https://github.com/ejaronne/second-layer-example-inspec-overlay-profile-against-1st-layer-example-inspec-overlay-profile/archive/main.tar.gz --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> 
+sudo inspec exec https://github.com/ejaronne/layer-2-overlay/archive/main.tar.gz --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> 
 ```
 ### Different Run Options
 
@@ -153,18 +153,18 @@ If your runner is not always expected to have direct access to GitHub, use the f
 ```
 mkdir profiles
 cd profiles
-git clone https://github.com/ejaronne/second-layer-example-inspec-overlay-profile-against-1st-layer-example-inspec-overlay-profile.git
-inspec archive second-layer-example-inspec-overlay-profile-against-1st-layer-example-inspec-overlay-profile
+git clone https://github.com/ejaronne/layer-2-overlay.git
+inspec archive layer-2-overlay
 sudo inspec exec <name of generated archive> --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> 
 ```
 
 For every successive run, follow these steps to always have the latest version of this overlay and dependent profiles:
 
 ```
-cd second-layer-example-inspec-overlay-profile-against-1st-layer-example-inspec-overlay-profile
+cd layer-2-overlay
 git pull
 cd ..
-inspec archive second-layer-example-inspec-overlay-profile-against-1st-layer-example-inspec-overlay-profile --overwrite
+inspec archive layer-2-overlay --overwrite
 sudo inspec exec <name of generated archive> --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> 
 ```
 
@@ -183,7 +183,7 @@ The JSON InSpec results file may also be loaded into a __[full heimdall server](
 * Sam Cornwell
 
 ## Contributing and Getting Help
-To report a bug or feature request, please open an [issue](https://github.com/ejaronne/second-layer-example-inspec-overlay-profile-against-1st-layer-example-inspec-overlay-profile/issues/new).
+To report a bug or feature request, please open an [issue](https://github.com/ejaronne/layer-2-overlay/issues/new).
 
 ## License
 This is licensed under the [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) license. 
